@@ -48,7 +48,7 @@ export default class GameArea {
             "rovine4.png",
             47,
             23,
-            "Ship1.png",
+            "ship1.png",
             38,
             45,
             "Map_tiles.png",
