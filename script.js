@@ -1,3 +1,4 @@
-import Level1 from "./level1.js";
+import GameArea from "./gameArea.js"
 
-let lev = new Level1();
+let gam = new GameArea();
+
