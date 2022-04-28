@@ -5,7 +5,7 @@ import NinjaSprites from "./NinjaSprites.js";
 
 export default class GameArea {    
   constructor() {
-    this.ninja= new AnimatedObject(NinjaSprites.running, 40, 40, 10, 780);  
+    this.ninja= new AnimatedObject(NinjaSprites.running, 24, 24, 10, 120);  
     this.level = new Level(
         30,
         30,

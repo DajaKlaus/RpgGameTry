@@ -1,3 +1,5 @@
+import RawObject from "./RawObject.js";
+
 export default class Level {
     
     level_width; //Altezza e larghezza dell livello (in tiles)
@@ -47,6 +49,7 @@ export default class Level {
     tileMapImage;
     tileMapImgHeight; 
     tileMapImageWidth;
+    obstaclesVector = [];
     constructor(level_width, level_height, tile_width, tile_height, acqua, terreno, percorso, oggetti, albero1, albero1ImgHeight, albero1ImgWidth, albero3, albero3ImgHeight, albero3ImgWidth, casa1, casa1ImgHeight, casa1ImgWidth, casa2, casa2ImgHeight, casa2ImgWidth, casa4, casa4ImgHeight, casa4ImgWidth, cespuglio1, cespuglio1ImgHeight, cespuglio1ImgWidth, pietra1, pietra1ImgHeight, pietra1ImgWidth, pietra5, pietra5ImgHeight, pietra5ImgWidth, pietra6, pietra6ImgHeight, pietra6ImgWidth, rovine2, rovine2ImgHeight, rovine2ImgWidth, rovine3, rovine3ImgHeight, rovine3ImgWidth, rovine4, rovine4ImgHeight, rovine4ImgWidth, tileMapsrc, tileMapImgHeight, tileMapImageWidth) {
         this.level_width = level_width;
         this.level_height = level_height;
@@ -121,6 +124,8 @@ export default class Level {
         this.tileMapImage.src = tileMapsrc;
         this.tileMapImgHeight = tileMapImgHeight;
         this.tileMapImageWidth = tileMapImageWidth;
+
+        this.pushLayerObstacleVector(acqua, tile_width, tile_height)
     }
     
     draw(canvasContext) {
@@ -196,5 +201,21 @@ export default class Level {
                 }
             }
         }
+    }
+
+    pushLayerObstacleVector(layerMap, tile_width, tile_height) {
+      for (let i = 0; i < layerMap.length; i++) {
+        if(layerMap[i] != 0)
+        {
+            //Ottengo le coordinate sulla canvas
+            let dx = (i % this.level_width) * 32;
+            let dy = Math.floor(i / this.level_height) * 32;
+            
+            let obstacle = new RawObject(dx, dy, tile_width, tile_height)
+            this.obstaclesVector.push(obstacle);
+
+            console.log(obstacle);
+        }
+      }
     }
 }
