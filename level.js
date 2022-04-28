@@ -44,13 +44,10 @@ export default class Level {
     rovine4Image;
     rovine4ImgHeight;
     rovine4ImgWidth;
-    ship1Image;
-    ship1ImgHeight;
-    ship1ImgWidth;
     tileMapImage;
     tileMapImgHeight; 
     tileMapImageWidth;
-    constructor(level_width, level_height, tile_width, tile_height, acqua, terreno, percorso, oggetti, albero1, albero1ImgHeight, albero1ImgWidth, albero3, albero3ImgHeight, albero3ImgWidth, casa1, casa1ImgHeight, casa1ImgWidth, casa2, casa2ImgHeight, casa2ImgWidth, casa4, casa4ImgHeight, casa4ImgWidth, cespuglio1, cespuglio1ImgHeight, cespuglio1ImgWidth, pietra1, pietra1ImgHeight, pietra1ImgWidth, pietra5, pietra5ImgHeight, pietra5ImgWidth, pietra6, pietra6ImgHeight, pietra6ImgWidth, rovine2, rovine2ImgHeight, rovine2ImgWidth, rovine3, rovine3ImgHeight, rovine3ImgWidth, rovine4, rovine4ImgHeight, rovine4ImgWidth, ship1, ship1ImgHeight, ship1ImgWidth, tileMapsrc, tileMapImgHeight, tileMapImageWidth) {
+    constructor(level_width, level_height, tile_width, tile_height, acqua, terreno, percorso, oggetti, albero1, albero1ImgHeight, albero1ImgWidth, albero3, albero3ImgHeight, albero3ImgWidth, casa1, casa1ImgHeight, casa1ImgWidth, casa2, casa2ImgHeight, casa2ImgWidth, casa4, casa4ImgHeight, casa4ImgWidth, cespuglio1, cespuglio1ImgHeight, cespuglio1ImgWidth, pietra1, pietra1ImgHeight, pietra1ImgWidth, pietra5, pietra5ImgHeight, pietra5ImgWidth, pietra6, pietra6ImgHeight, pietra6ImgWidth, rovine2, rovine2ImgHeight, rovine2ImgWidth, rovine3, rovine3ImgHeight, rovine3ImgWidth, rovine4, rovine4ImgHeight, rovine4ImgWidth, tileMapsrc, tileMapImgHeight, tileMapImageWidth) {
         this.level_width = level_width;
         this.level_height = level_height;
         this.tile_width = tile_width;
@@ -120,11 +117,6 @@ export default class Level {
         this.rovine4ImgHeight = rovine4ImgHeight;
         this.rovine4ImgWidth = rovine4ImgWidth;
         
-        this.ship1Image = new Image(this.width, this.height);
-        this.ship1Image = ship1;
-        this.ship1ImgHeight = ship1ImgHeight;
-        this.ship1ImgWidth = ship1ImgWidth;
-        
         this.tileMapImage = new Image(this.width, this.height);
         this.tileMapImage.src = tileMapsrc;
         this.tileMapImgHeight = tileMapImgHeight;
@@ -149,44 +141,58 @@ export default class Level {
             //Ottengo le coordinate sulla tilemap
             let sx = ((tile-1)  % (this.tileMapImageWidth/32)) * 32;
             let sy = Math.floor((tile-1) / (this.tileMapImgHeight/32)) * 32;
-            
+                        
             if (tile != 0) {
-                canvasContext.drawImage(this.tileMapImage, sx, sy, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+                if (tile == 93 && i <= 128) {
+                    var x = this.level_width / 2;
+                    var y = this.level_height / 2;
+                    var width = this.tile_width;
+                    var height = this.tile_height;
+                    var angleRadius = (-2147483648) + 1073741824
+                    
+                    canvasContext.translate(x, y);
+                    canvasContext.rotate(angleRadius);
+                    canvasContext.drawImage(this.tileMapImage, 288, 288, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+                    canvasContext.rotate(-angleRadius);
+                    canvasContext.translate(-x, -y);
+                } else {
+                    canvasContext.drawImage(this.tileMapImage, sx, sy, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+                }
                 if (tile == 145) {
                     canvasContext.drawImage(this.cespuglio1Image, 0, 0, this.cespuglio1ImgWidth, this.cespuglio1ImgHeight, dx, dy, this.cespuglio1ImgWidth, this.cespuglio1ImgHeight);
                 }
                 if (tile == 146) {
-                    canvasContext.drawImage(this.casa1Image, 0, 0, this.casa1ImgWidth, this.casa1ImgHeight, dx, dy, this.casa1ImgWidth, this.casa1ImgHeight);
+                    canvasContext.drawImage(this.casa1Image, 0, 0, this.casa1ImgWidth, this.casa1ImgHeight, dx, dy - 3, this.casa1ImgWidth, this.casa1ImgHeight);
                 }
                 if (tile == 147) {
-                    canvasContext.drawImage(this.casa2Image, 0, 0, this.casa2ImgWidth, this.casa2ImgHeight, dx, dy, this.casa2ImgWidth, this.casa2ImgHeight);
+                    canvasContext.drawImage(this.casa2Image, 0, 0, this.casa2ImgWidth, this.casa2ImgHeight, dx, dy - 6, this.casa2ImgWidth, this.casa2ImgHeight);
                 }
                 if (tile == 148) {
-                    canvasContext.drawImage(this.casa4Image, 0, 0, this.casa4ImgWidth, this.casa4ImgHeight, dx, dy, this.casa4ImgWidth, this.casa4ImgHeight);
+                    canvasContext.drawImage(this.casa4Image, 0, 0, this.casa4ImgWidth, this.casa4ImgHeight, dx, dy - 28, this.casa4ImgWidth, this.casa4ImgHeight);
                 }
                 if (tile == 150) {
-                    canvasContext.drawImage(this.albero1Image, 0, 0, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+                    canvasContext.drawImage(this.albero1Image, 0, 0, this.albero1ImgWidth, this.albero1ImgHeight, dx, dy, this.albero1ImgWidth, this.albero1ImgHeight);
                 }
                 if (tile == 151) {
-                    canvasContext.drawImage(this.albero3Image, 0, 0, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+                    canvasContext.drawImage(this.albero3Image, 0, 0, this.albero3ImgWidth, this.albero3ImgHeight, dx, dy, this.albero3ImgWidth, this.albero3ImgHeight);
                 }
                 if (tile == 152) {
-                    canvasContext.drawImage(this.rovine3Image, 0, 0, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+                    canvasContext.drawImage(this.rovine3Image, 0, 0, this.rovine3ImgWidth, this.rovine3ImgHeight, dx, dy, this.rovine3ImgWidth, this.rovine3ImgHeight);
                 }
                 if (tile == 153) {
-                    canvasContext.drawImage(this.rovine2Image, 0, 0, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+                    canvasContext.drawImage(this.rovine2Image, 0, 0, this.rovine2ImgWidth, this.rovine2ImgHeight, dx, dy, this.rovine2ImgWidth, this.rovine2ImgHeight);
                 }
                 if (tile == 154) {
-                    canvasContext.drawImage(this.rovine4Image, 0, 0, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+                    canvasContext.drawImage(this.rovine4Image, 0, 0, this.rovine4ImgWidth, this.rovine4ImgHeight, dx, dy, this.rovine4ImgWidth, this.rovine4ImgHeight);
                 }
                 if (tile == 155) {
-                    canvasContext.drawImage(this.pietra1Image, 0, 0, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+                    canvasContext.drawImage(this.pietra1Image, 0, 0, this.pietra1ImgWidth, this.pietra1ImgHeight, dx, dy - 22, this.pietra1ImgWidth, this.pietra1ImgHeight);
                 }
                 if (tile == 156) {
-                    canvasContext.drawImage(this.pietra5Image, 0, 0, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+                    canvasContext.drawImage(this.pietra5Image, 0, 0, this.pietra5ImgWidth, this.pietra5ImgHeight, dx, dy, this.pietra5ImgWidth, this.pietra5ImgHeight);
                 }
                 if (tile == 157) {
-                    canvasContext.drawImage(this.pietra6Image, 0, 0, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+                    canvasContext.drawImage(this.pietra6Image, 0, 0, this.pietra6ImgWidth, this.pietra6ImgHeight, dx, dy, this.pietra6ImgWidth, this.pietra6ImgHeight);
                 }
             }
         }

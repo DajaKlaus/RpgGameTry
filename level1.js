@@ -124,7 +124,7 @@ export default class Level1 {
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 }
 
-/*const tile = 2147483802;
+const tile = 3221225565;
 const horizontalFlip = tile & 0x80000000;
 const verticalFlip = tile & 0x40000000;
 const diagonalFlip = tile & 0x20000000;
@@ -132,4 +132,4 @@ const tileID = tile & ~(0x80000000 | 0x40000000 | 0x20000000);
 console.log(horizontalFlip);
 console.log(verticalFlip);
 console.log(diagonalFlip);
-console.log(tileID);*/
+console.log(tileID);
